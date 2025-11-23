@@ -1,6 +1,7 @@
 
-import React, { useState } from 'react';
-import { Mail, Phone, MapPin, Clock } from 'lucide-react';
+
+import React, { useState, useEffect } from 'react';
+import { Mail, Phone, MapPin, Clock, CheckCircle } from 'lucide-react';
 
 const ContactPage = () => {
   const [contactForm, setContactForm] = useState({
@@ -8,18 +9,42 @@ const ContactPage = () => {
     email: '',
     message: ''
   });
+  const [showPopup, setShowPopup] = useState(false);
+
+  useEffect(() => {
+    if (showPopup) {
+      const timer = setTimeout(() => {
+        setShowPopup(false);
+      }, 5000);
+      return () => clearTimeout(timer);
+    }
+  }, [showPopup]);
 
   const handleContactSubmit = (e) => {
     e.preventDefault();
     
     console.log('Contact form submitted:', contactForm);
-    alert('Thank you for contacting us! We will get back to you soon.');
-    
+    setShowPopup(true);
     setContactForm({ name: '', email: '', message: '' });
   };
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-purple-50 via-white to-pink-50 py-12">
+    
+      {showPopup && (
+        <div className="fixed top-4 right-4 z-50 animate-in slide-in-from-top-5 duration-300">
+          <div className="bg-white rounded-xl shadow-2xl p-6 border-l-4 border-green-500 flex items-center space-x-4 min-w-[320px] max-w-md">
+            <div className="bg-green-100 p-2 rounded-full">
+              <CheckCircle className="text-green-600" size={32} />
+            </div>
+            <div className="flex-1">
+              <h3 className="font-bold text-gray-900 text-lg">Message Sent Successfully!</h3>
+              <p className="text-sm text-gray-600">We will get back to you soon.</p>
+            </div>
+          </div>
+        </div>
+      )}
+
       <div className="max-w-6xl mx-auto px-4">
         
         <div className="text-center mb-12">

@@ -1,7 +1,18 @@
-import React from 'react';
-import { UserPlus, Heart } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { UserPlus, Heart, CheckCircle } from 'lucide-react';
 
 const RegisterPage = ({ formData, setFormData, handleRegister }) => {
+  const [showPopup, setShowPopup] = useState(false);
+
+  useEffect(() => {
+    if (showPopup) {
+      const timer = setTimeout(() => {
+        setShowPopup(false);
+      }, 5000);
+      return () => clearTimeout(timer);
+    }
+  }, [showPopup]);
+
   const handleInputChange = (e) => {
     setFormData({
       ...formData,
@@ -12,10 +23,26 @@ const RegisterPage = ({ formData, setFormData, handleRegister }) => {
   const onSubmit = (e) => {
     e.preventDefault();
     handleRegister(formData);
+    setShowPopup(true);
   };
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-green-50 via-white to-emerald-50 py-12">
+      
+      {showPopup && (
+        <div className="fixed top-4 right-4 z-50 animate-in slide-in-from-top-5 duration-300">
+          <div className="bg-white rounded-xl shadow-2xl p-6 border-l-4 border-green-500 flex items-center space-x-4 min-w-[320px] max-w-md">
+            <div className="bg-green-100 p-2 rounded-full">
+              <CheckCircle className="text-green-600" size={32} />
+            </div>
+            <div className="flex-1">
+              <h3 className="font-bold text-gray-900 text-lg">Registration Successful!</h3>
+              <p className="text-sm text-gray-600">Thank you for becoming a life-saver.</p>
+            </div>
+          </div>
+        </div>
+      )}
+
       <div className="max-w-2xl mx-auto px-4">
         
         <div className="text-center mb-8">

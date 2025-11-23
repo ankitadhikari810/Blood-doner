@@ -2,7 +2,8 @@
 import React from 'react';
 import { Search, Clock } from 'lucide-react';
 
-const NeedBloodPage = ({ formData, setFormData, handleFind }) => {
+const NeedBloodPage = ({ formData, setFormData, handleFind, setCurrentPage, setSearchCriteria }) => {
+
   const handleInputChange = (e) => {
     setFormData({
       ...formData,
@@ -12,20 +13,48 @@ const NeedBloodPage = ({ formData, setFormData, handleFind }) => {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    handleFind(formData);
+    
+    // Validate form data
+    if (!formData.district || !formData.bloodGroup || !formData.pincode) {
+      alert('Please fill in all required fields');
+      return;
+    }
+    
+    // Set search criteria and navigate to results page
+    if (setSearchCriteria) {
+      setSearchCriteria({
+        district: formData.district,
+        bloodGroup: formData.bloodGroup,
+        pincode: formData.pincode
+      });
+    }
+    
+    // Navigate to results page
+    if (setCurrentPage) {
+      setCurrentPage('donor-results');
+    }
+    
+    // Call parent handler
+    if (handleFind) {
+      handleFind(formData);
+    }
   };
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-red-50 via-white to-pink-50 py-12">
-      <div className="max-w-2xl mx-auto px-4">
+      <div className="max-w-6xl mx-auto px-4">
         
         <div className="text-center mb-8">
           <Search className="text-red-600 mx-auto mb-4" size={48} />
           <h1 className="text-4xl font-bold text-gray-900 mb-2">Find Blood Donors</h1>
           <p className="text-gray-600">Search for available donors in your area</p>
+          <p className="text-sm text-gray-500 mt-2">
+            Example: Saharanpur, O+, 247001
+          </p>
         </div>
 
-        <form onSubmit={onSubmit} className="bg-white rounded-2xl shadow-2xl p-8 space-y-6">
+        <div className="max-w-2xl mx-auto mb-8">
+          <form onSubmit={onSubmit} className="bg-white rounded-2xl shadow-2xl p-8 space-y-6">
           
           <div>
             <label className="block text-sm font-semibold text-gray-700 mb-2">
@@ -95,6 +124,7 @@ const NeedBloodPage = ({ formData, setFormData, handleFind }) => {
             <span>Find Donors</span>
           </button>
         </form>
+        </div>
 
         <div className="mt-8 bg-blue-50 border-l-4 border-blue-500 p-6 rounded-lg">
           <h3 className="font-semibold text-blue-900 mb-2 flex items-center">
