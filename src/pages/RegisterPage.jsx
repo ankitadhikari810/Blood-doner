@@ -138,12 +138,19 @@ const RegisterPage = ({ formData, setFormData, handleRegister }) => {
                 className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent transition"
                 required
               >
-                <option value="Saharanpur">Saharanpur</option>
-                <option value="Muzaffarnagar">Muzaffarnagar</option>
-                <option value="Meerut">Meerut</option>
-                <option value="Delhi">Delhi</option>
-                <option value="Ghaziabad">Ghaziabad</option>
-                <option value="Noida">Noida</option>
+                <option value="Almora">Almora</option>
+                <option value="Bageshwar">Bageshwar</option>
+                <option value="Chamoli">Chamoli</option>
+                <option value="Champawat">Champawat</option>
+                <option value="Dehradun">Dehradun</option>
+                <option value="Haridwar">Haridwar</option>
+                <option value="Nainital">Nainital</option>
+                <option value="Pauri Garhwal">Pauri Garhwal</option>
+                <option value="Pithoragarh">Pithoragarh</option>
+                <option value="Rudraprayag">Rudraprayag</option>
+                <option value="Tehri Garhwal">Tehri Garhwal</option>
+                <option value="Udham Singh Nagar">Udham Singh Nagar</option>
+                <option value="Uttarkashi">Uttarkashi</option>
               </select>
             </div>
 

@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { Search, UserPlus, Users, Heart, Activity, Award } from 'lucide-react';
+import { Search, UserPlus, Users, Heart, Activity, Award, MapPin } from 'lucide-react';
 
 const HomePage = ({ setCurrentPage }) => {
   return (
@@ -16,7 +16,7 @@ const HomePage = ({ setCurrentPage }) => {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto mb-16">
+        <div className="grid md:grid-cols-3 gap-6 max-w-6xl mx-auto mb-16">
           <div 
             onClick={() => setCurrentPage('need-blood')}
             className="bg-white rounded-2xl shadow-2xl p-8 hover:shadow-3xl transition-all duration-300 cursor-pointer transform hover:-translate-y-2 border-2 border-transparent hover:border-red-500"
@@ -25,29 +25,47 @@ const HomePage = ({ setCurrentPage }) => {
               <div className="bg-red-100 p-6 rounded-full mb-6">
                 <Search className="text-red-600" size={48} />
               </div>
-              <h2 className="text-3xl font-bold text-gray-900 mb-3">I Need Blood</h2>
-              <p className="text-gray-600 mb-6">
+              <h2 className="text-2xl font-bold text-gray-900 mb-3">I Need Blood</h2>
+              <p className="text-gray-600 mb-6 text-sm">
                 Find blood donors near you quickly and easily
               </p>
-              <button className="bg-red-600 text-white px-8 py-3 rounded-full font-semibold hover:bg-red-700 transition">
+              <button className="bg-red-600 text-white px-6 py-2 rounded-full font-semibold hover:bg-red-700 transition text-sm">
                 Search Donors
               </button>
             </div>
           </div>
 
           <div 
+            onClick={() => setCurrentPage('near-you')}
+            className="bg-white rounded-2xl shadow-2xl p-8 hover:shadow-3xl transition-all duration-300 cursor-pointer transform hover:-translate-y-2 border-2 border-transparent hover:border-blue-500"
+          >
+            <div className="flex flex-col items-center text-center">
+              <div className="bg-blue-100 p-6 rounded-full mb-6">
+                <MapPin className="text-blue-600" size={48} />
+              </div>
+              <h2 className="text-2xl font-bold text-gray-900 mb-3">Quick Find</h2>
+              <p className="text-gray-600 mb-6 text-sm">
+                Find nearby blood donors using your location
+              </p>
+              <button className="bg-blue-600 text-white px-6 py-2 rounded-full font-semibold hover:bg-blue-700 transition text-sm">
+                Find Near You
+              </button>
+            </div>
+          </div>
+
+          <div 
             onClick={() => setCurrentPage('register')}
-            className="bg-white rounded-2xl shadow-2xl p-8 hover:shadow-3xl transition-all duration-300 cursor-pointer transform hover:-translate-y-2 border-2 border-transparent hover:border-red-500"
+            className="bg-white rounded-2xl shadow-2xl p-8 hover:shadow-3xl transition-all duration-300 cursor-pointer transform hover:-translate-y-2 border-2 border-transparent hover:border-green-500"
           >
             <div className="flex flex-col items-center text-center">
               <div className="bg-green-100 p-6 rounded-full mb-6">
                 <UserPlus className="text-green-600" size={48} />
               </div>
-              <h2 className="text-3xl font-bold text-gray-900 mb-3">Register as Donor</h2>
-              <p className="text-gray-600 mb-6">
+              <h2 className="text-2xl font-bold text-gray-900 mb-3">Register as Donor</h2>
+              <p className="text-gray-600 mb-6 text-sm">
                 Join our community of life-savers and make a difference
               </p>
-              <button className="bg-green-600 text-white px-8 py-3 rounded-full font-semibold hover:bg-green-700 transition">
+              <button className="bg-green-600 text-white px-6 py-2 rounded-full font-semibold hover:bg-green-700 transition text-sm">
                 Become a Donor
               </button>
             </div>

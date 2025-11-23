@@ -14,27 +14,23 @@ const NeedBloodPage = ({ formData, setFormData, handleFind, setCurrentPage, setS
   const onSubmit = (e) => {
     e.preventDefault();
     
-    // Validate form data
-    if (!formData.district || !formData.bloodGroup || !formData.pincode) {
+    if (!formData.district || !formData.bloodGroup) {
       alert('Please fill in all required fields');
       return;
     }
     
-    // Set search criteria and navigate to results page
     if (setSearchCriteria) {
       setSearchCriteria({
         district: formData.district,
         bloodGroup: formData.bloodGroup,
-        pincode: formData.pincode
+        pincode: ''
       });
     }
     
-    // Navigate to results page
     if (setCurrentPage) {
       setCurrentPage('donor-results');
     }
     
-    // Call parent handler
     if (handleFind) {
       handleFind(formData);
     }
@@ -49,7 +45,7 @@ const NeedBloodPage = ({ formData, setFormData, handleFind, setCurrentPage, setS
           <h1 className="text-4xl font-bold text-gray-900 mb-2">Find Blood Donors</h1>
           <p className="text-gray-600">Search for available donors in your area</p>
           <p className="text-sm text-gray-500 mt-2">
-            Example: Saharanpur, O+, 247001
+            Example: Dehradun, O+
           </p>
         </div>
 
@@ -67,12 +63,19 @@ const NeedBloodPage = ({ formData, setFormData, handleFind, setCurrentPage, setS
               className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent transition"
               required
             >
-              <option value="Saharanpur">Saharanpur</option>
-              <option value="Muzaffarnagar">Muzaffarnagar</option>
-              <option value="Meerut">Meerut</option>
-              <option value="Delhi">Delhi</option>
-              <option value="Ghaziabad">Ghaziabad</option>
-              <option value="Noida">Noida</option>
+              <option value="Almora">Almora</option>
+              <option value="Bageshwar">Bageshwar</option>
+              <option value="Chamoli">Chamoli</option>
+              <option value="Champawat">Champawat</option>
+              <option value="Dehradun">Dehradun</option>
+              <option value="Haridwar">Haridwar</option>
+              <option value="Nainital">Nainital</option>
+              <option value="Pauri Garhwal">Pauri Garhwal</option>
+              <option value="Pithoragarh">Pithoragarh</option>
+              <option value="Rudraprayag">Rudraprayag</option>
+              <option value="Tehri Garhwal">Tehri Garhwal</option>
+              <option value="Udham Singh Nagar">Udham Singh Nagar</option>
+              <option value="Uttarkashi">Uttarkashi</option>
             </select>
           </div>
 
@@ -97,23 +100,6 @@ const NeedBloodPage = ({ formData, setFormData, handleFind, setCurrentPage, setS
               <option value="O+">O+ (O Positive)</option>
               <option value="O-">O- (O Negative)</option>
             </select>
-          </div>
-
-          <div>
-            <label className="block text-sm font-semibold text-gray-700 mb-2">
-              Enter Pincode *
-            </label>
-            <input
-              type="text"
-              name="pincode"
-              value={formData.pincode}
-              onChange={handleInputChange}
-              placeholder="e.g., 247001"
-              pattern="[0-9]{6}"
-              className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent transition"
-              required
-            />
-            <p className="text-xs text-gray-500 mt-1">Enter 6-digit pincode</p>
           </div>
 
           <button

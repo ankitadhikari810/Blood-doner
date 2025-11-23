@@ -76,8 +76,8 @@ const ContactPage = () => {
                   </div>
                   <div>
                     <h3 className="font-bold text-gray-800 mb-1">Email</h3>
-                    <p className="text-gray-600">info@bloodconnect.com</p>
-                    <p className="text-gray-600">support@bloodconnect.com</p>
+                    <p className="text-gray-600">info@blooddoner.com</p>
+                    <p className="text-gray-600">support@blooddoner.com</p>
                   </div>
                 </div>
                 
@@ -88,9 +88,9 @@ const ContactPage = () => {
                   <div>
                     <h3 className="font-bold text-gray-800 mb-1">Address</h3>
                     <p className="text-gray-600">
-                      123 Blood Bank Street,<br />
-                      Saharanpur, Uttar Pradesh<br />
-                      India - 247001
+                      W-1 Pampapuri,<br />
+                      Ramnagar, Uttrakhand<br />
+                      India - 244715
                     </p>
                   </div>
                 </div>

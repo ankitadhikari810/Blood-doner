@@ -7,6 +7,7 @@ import NeedBloodPage from './pages/NeedBloodPage';
 import RegisterPage from './pages/RegisterPage';
 import AboutPage from './pages/AboutPage';
 import ContactPage from './pages/ContactPage';
+import NearYouPage from './pages/NearYouPage';
 import { DonorResultsPage } from './pages/doners';
 
 const App = () => {
@@ -17,7 +18,7 @@ const App = () => {
     pincode: ''
   });
   const [formData, setFormData] = useState({
-    district: 'Saharanpur',
+    district: 'Dehradun',
     bloodGroup: '',
     name: '',
     contactNumber: '',
@@ -30,7 +31,6 @@ const App = () => {
   const handleFind = async (searchData) => {
     try {
       console.log('Searching for donors with:', searchData);
-      // Alert removed - navigation to results page handles the feedback
     } catch (error) {
       console.error('Error finding donors:', error);
     }
@@ -38,12 +38,10 @@ const App = () => {
 
   const handleRegister = async (donorData) => {
     try {
-      // Get existing donors from localStorage
       const existingDonors = JSON.parse(localStorage.getItem('registeredDonors') || '[]');
       
-      // Create a new donor object with all required fields
       const newDonor = {
-        id: Date.now(), // Generate unique ID
+        id: Date.now(),
         name: donorData.name,
         district: donorData.district,
         bloodGroup: donorData.bloodGroup,
@@ -56,17 +54,14 @@ const App = () => {
         isAvailable: true
       };
       
-      // Add new donor to the array
       existingDonors.push(newDonor);
       
-      // Save to localStorage
       localStorage.setItem('registeredDonors', JSON.stringify(existingDonors));
       
       console.log('Registering donor:', newDonor);
       
-      // Reset form
       setFormData({
-        district: 'Saharanpur',
+        district: 'Dehradun',
         bloodGroup: '',
         name: '',
         contactNumber: '',
@@ -104,6 +99,8 @@ const App = () => {
         );
       case 'register':
         return <RegisterPage formData={formData} setFormData={setFormData} handleRegister={handleRegister} />;
+      case 'near-you':
+        return <NearYouPage setCurrentPage={setCurrentPage} setSearchCriteria={setSearchCriteria} />;
       case 'about':
         return <AboutPage />;
       case 'contact':

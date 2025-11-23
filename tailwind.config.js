@@ -6,4 +6,6 @@ module.exports = {
     extend: {},
   },
   plugins: [],
+  // Ignore deleted files
+  safelist: [],
 }
